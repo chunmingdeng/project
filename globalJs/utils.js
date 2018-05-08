@@ -110,3 +110,36 @@ utils.deepClone = function (obj) {
   }
   return newObj;
 }
+
+
+
+// expend js 基础能力的扩展
+function exchange(arr,item1,item2) {
+  var middleVal = arr[item1];
+  arr[item1] = arr[item2];
+  arr[item2] = middleVal;
+}
+Array.prototype.bubbleSort = function () {
+  var len = this.length;
+  for(var i=0; i<len-1; i++){
+    for(var j=0; j<len-1-i; j++){
+      if(this[j]>this[j+1]){
+        exchange(this,j,j+1);
+      }
+    }
+  }
+  return this;
+}
+Array.prototype.selectSort = function () {
+  var len = this.length,minIndex;
+  for(var i=0; i<len-1; i++){
+    minIndex = i;
+    for(var j=i+1; j<len; j++){
+      if(this[j]<this[minIndex]){
+        minIndex = j;
+      }
+    }
+    exchange(this ,i ,minIndex);
+  }
+  return this;
+}
