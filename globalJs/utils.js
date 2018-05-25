@@ -111,6 +111,32 @@ utils.deepClone = function (obj) {
   return newObj;
 }
 
+/**
+ * math calculate*/
+utils.add = function (arg1, arg2) {
+  var m = arg1.toString().split('.')[1].length;
+  var n = arg2.toString().split('.')[1].length;
+  var p = Math.pow(10,Math.max(m, n));
+  return (arg1*p+arg2*p)/p
+}
+utils.sub = function (arg1, arg2) {
+  var m = arg1.toString().split('.')[1].length;
+  var n = arg2.toString().split('.')[1].length;
+  var p = Math.pow(10,Math.max(m, n));
+  return (arg1*p-arg2*p)/p
+}
+utils.mul = function (arg1, arg2) {
+  var str1 = arg1.toString(), str2 = arg2.toString();
+  var m = str1.split('.')[1].length;
+  var n = str2.split('.')[1].length;
+  return Number(str1.replace('.',''))*Number(str2.replace('.',''))/Math.pow(10,m+n)
+}
+utils.div = function (arg1, arg2) {
+  var str1 = arg1.toString(), str2 = arg2.toString();
+  var m = str1.split('.')[1].length;
+  var n = str2.split('.')[1].length;
+  return Number(str1.replace('.',''))/Number(str2.replace('.',''))/Math.pow(10,n-m)
+}
 
 
 // expend js 基础能力的扩展
