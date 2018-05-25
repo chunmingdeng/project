@@ -31,35 +31,6 @@ utils.cookie = {
   }
 }
 
-/**
- * date
- * methods:fmat*/
-utils.date = {
-  fmat :function (date,datefmat) {
-    if(!(date instanceof Date)){
-      throw new Error('请输入正确的时间格式！');
-      return;
-    }
-    var fmt = datefmat?datefmat:'yyyy-MM-dd hh:mm:ss';
-    var paddNum = function(num){
-      return num.toString().replace(/^(\d)$/g,'0$1');
-    }
-    var config = {
-      yyyy:date.getFullYear(),
-      yy:date.getFullYear().toString().sub(2),
-      M:date.getMonth()+1,
-      MM:paddNum(date.getMonth()+1),
-      d:date.getDate(),
-      dd:paddNum(date.getDate()),
-      hh:date.getHours(),
-      mm:date.getMinutes(),
-      ss:date.getSeconds()
-    }
-    return fmt.replace(/([a-z])(\1)*/ig,function (val) {
-      return config[val]
-    })
-  }
-}
 
 /**
  * ajax*/
@@ -136,6 +107,30 @@ utils.div = function (arg1, arg2) {
   var m = str1.split('.')[1].length;
   var n = str2.split('.')[1].length;
   return Number(str1.replace('.',''))/Number(str2.replace('.',''))/Math.pow(10,n-m)
+}
+
+/**
+ * formatDate*/
+utils.formatDate = function (date, fmt) {
+  var fmt = fmt || 'yyyy/MM/dd hh:mm:ss';
+  var date = new Date(date);
+  function paddNum(str) {
+    str += '';
+    return str.replace(/^(\d)$/,'0$1')
+  }
+  var fmt_obj = {
+    yyyy : date.getFullYear(),
+    MM : paddNum(date.getMonth() + 1),
+    M : date.getMonth() + 1,
+    dd : paddNum(date.getDate()),
+    d : date.getDate(),
+    hh : paddNum(date.getHours()),
+    mm : paddNum(date.getMinutes()),
+    ss : paddNum(date.getSeconds())
+  }
+  return fmt.replace(/([a-z])(\1)*/ig,function (m) {
+    return fmt_obj[m]
+  })
 }
 
 
