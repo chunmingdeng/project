@@ -8,7 +8,7 @@ var tools = {};
  * extends
  * use:子类名称.superClass.constructor.apply(this)
  */
-/
+
 tools.extends = function (subClass,superClass) {//继承实现
   var f = function () {};
   f.prototype = superClass.prototype;
